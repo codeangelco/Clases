@@ -11,6 +11,10 @@
  * "El resultado de la suma es: x".
  * El codigo debe estar bien identado.
  * 
+ * ! Permisos:
+ * Se pueden ver codigos anteriores.
+ * Se puede buscar lo que necesites en la documentacion.
+ * 
  * ---------------------------------------------------------------------------------------------------- 
  * * Codigo 1 (basico - 10m):
  * Generar un codigo donde le pidamos a el usuario dos numeros, con los cuales vamos a realizar
