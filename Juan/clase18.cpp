@@ -57,57 +57,125 @@ using namespace std;
 //     return 0;
 // }
 
-struct Libro {
+// struct Libro {
+//     string nombre;
+//     int paginas;
+//     string fecha;
+// };
+
+// int main() {
+//     int size;
+//     cout << "Ingrese la cantidad de libros a guardar: ";
+//     cin >> size;
+
+//     struct Libro libros[size];
+
+//     for (int i = 0; i < size; i++) { 
+//         cout << "Ingrese el nombre del libro #" << i + 1 << ": ";
+//         cin >> libros[i].nombre;
+
+//         cout << "Ingrese la cantidad de paginas del libro #" << i + 1 << ": ";
+//         cin >> libros[i].paginas;
+
+//         cout << "Ingrese la fecha del libro #" << i + 1 << ": ";
+//         cin >> libros[i].fecha;
+//     }
+
+//     int op;
+//     while (true) {
+//         cout << "\tIngrese la opcion que desee!" << endl;
+
+//         cout << "0. Salir\n1. Revisar un libro" << endl;
+//         cout << "/: ";
+//         cin >> op;
+
+//         if (op == 0) {
+//             break;
+//         }
+
+//         cout << "Ingrese el numero de libro a revisar: ";
+//         cin >> op;
+
+//         if (op < 1 || op > size) {
+//             cout << "Numero de libro invalido." << endl;
+//         } else {
+//             int idx = op - 1;
+//             cout << "Libro #" << op << ":" << endl;
+//             cout << "Nombre: " << libros[idx].nombre << endl;
+//             cout << "Paginas: " << libros[idx].paginas << endl;
+//             cout << "Fecha: " << libros[idx].fecha << endl;
+//         }
+//     }
+    
+//     cout << "\nBiblioteca cerrada!" << endl;
+
+//     return 0;
+// }
+
+struct Cuenta {
     string nombre;
-    int paginas;
-    string fecha;
+    int fondo;
+    string password;
 };
 
+struct Cuenta cuentas[] = {
+    {"Juan", 1'234'123, "sopa1234"},
+    {"Gabriel", 10'000, "casita-rosada78"},
+    {"Felipe", 924'222, "trt4mundos"}
+};
+
+int buscaCuenta(string nombre) {
+    for (int i = 0; i < 3; i++) {
+        if (nombre == cuentas[i].nombre) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 int main() {
-    int size;
-    cout << "Ingrese la cantidad de libros a guardar: ";
-    cin >> size;
-
-    struct Libro libros[size];
-
-    for (int i = 0; i < size; i++) { 
-        cout << "Ingrese el nombre del libro #" << i + 1 << ": ";
-        cin >> libros[i].nombre;
-
-        cout << "Ingrese la cantidad de paginas del libro #" << i + 1 << ": ";
-        cin >> libros[i].paginas;
-
-        cout << "Ingrese la fecha del libro #" << i + 1 << ": ";
-        cin >> libros[i].fecha;
-    }
-
-    int op;
+    int op, value;
+    string nombre, password;
     while (true) {
-        cout << "\tIngrese la opcion que desee!" << endl;
+        cout << "\tBienvenido al banco central!" << endl;
+        cout << "Ingrese su nombre: ";
+        cin >> nombre;
 
-        cout << "0. Salir\n1. Revisar un libro" << endl;
-        cout << "/: ";
-        cin >> op;
-
-        if (op == 0) {
-            break;
+        int id = buscaCuenta(nombre);
+        if (id < 0) {
+            cout << "Cuenta no encontrada!" << endl;
+            return 0;
         }
+        
+        // Falto revisar la contraseña!
 
-        cout << "Ingrese el numero de libro a revisar: ";
-        cin >> op;
+        while (true) {
+            cout << "\n\tBienvenido " << nombre << endl;
+            cout << "0. Salir\n1. Visualizar saldo\n2. Ingresar dinero\n3. Retirar dinero\n/: ";        
+            cin >> op;
 
-        if (op < 1 || op > size) {
-            cout << "Numero de libro invalido." << endl;
-        } else {
-            int idx = op - 1;
-            cout << "Libro #" << op << ":" << endl;
-            cout << "Nombre: " << libros[idx].nombre << endl;
-            cout << "Paginas: " << libros[idx].paginas << endl;
-            cout << "Fecha: " << libros[idx].fecha << endl;
+            if (op == 0) {
+                cout << "Gracias por su visita!" << endl;
+                return 0;
+            }
+
+            if (op == 1) {
+                cout << "Saldo: " << cuentas[id].fondo << endl;
+            } else if (op == 2) {
+                cout << "Ingrese el monto a ingresar: ";
+                cin >> value;
+                cuentas[id].fondo += value;
+                cout << "Valor ingresado correctamente!";
+            } else if (op == 3) {
+                cout << "Ingrese el monto a retirar: ";
+                cin >> value;
+                cuentas[id].fondo -= value;
+                cout << "Valor retirado correctamente!";
+            } else {
+                cout << "Opcion incorrecta!" << endl;
+            }
         }
     }
-    
-    cout << "\nBiblioteca cerrada!" << endl;
 
     return 0;
 }
