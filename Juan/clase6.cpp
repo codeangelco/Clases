@@ -7,7 +7,7 @@ int main() {
     // int;
     // float;
     // string;
-    // double;
+    // double;{}
     // bool;
     // char;
 
