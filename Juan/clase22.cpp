@@ -53,7 +53,7 @@ int main() {
     cout << texto[2] << endl;
 
     for (int i = 0; i < texto.length(); i++) {
-        if (texto[i] >= 65) 
+        if (texto[i] >= 65)
             texto[i] += 32;
         cout << texto[i] << endl;
     }
